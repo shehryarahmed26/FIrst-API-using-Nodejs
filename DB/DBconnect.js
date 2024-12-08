@@ -1,10 +1,13 @@
+import 'dotenv/config'
+
 import chalk from "chalk";
 import mongoose from "mongoose";
+
 
 const DBConnection = () => {
   mongoose
     .connect(
-      `mongodb://shehryar:shehryar@cluster0-shard-00-00.ugo70.mongodb.net:27017,cluster0-shard-00-01.ugo70.mongodb.net:27017,cluster0-shard-00-02.ugo70.mongodb.net:27017/Students?replicaSet=atlas-l7f15u-shard-0&ssl=true&authSource=admin`
+      `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0-shard-00-00.ugo70.mongodb.net:27017,cluster0-shard-00-01.ugo70.mongodb.net:27017,cluster0-shard-00-02.ugo70.mongodb.net:27017/Students?replicaSet=atlas-l7f15u-shard-0&ssl=true&authSource=admin`
     )
     .then(() => {
       console.log(chalk.green('DB Connected Successfully'));
