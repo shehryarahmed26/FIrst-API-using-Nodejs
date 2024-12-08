@@ -2,6 +2,16 @@ import chalk from "chalk";
 import express, { json } from "express";
 import DBConnection from './DB/DBconnect.js'
 import 'dotenv/config'
+import model from "./DB/Model.js";
+import { Get_Students } from "./Students/get.js";
+import { Add_Student } from "./Students/post.js";
+import { Update_Student } from "./Students/put.js";
+import { Delete_Student } from "./Students/delete.js";
+import { Get_Users } from "./Users/get.js";
+import { Add_Users } from "./Users/post.js";
+import { update_Users } from "./Users/put.js";
+import { Delete_Users } from "./Users/delete.js";
+import { User_login } from "./Login/login.js";
 
 const app = express()
 let tasks = [
@@ -20,12 +30,25 @@ let tasks = [
   app.use(express.json())
 
   // DB Connected 
-  DBConnection()
-  console.log(process.env.DB_USER);
+  // console.log(process.env.DB_USER);
   
   app.get('/healthcheck', (req, res) => {
     res.send("all good")
   }) 
+  // Students >>
+  app.get('/students', Get_Students)
+  app.post('/students', Add_Student)
+  app.put('/students/:id', Update_Student)
+  app.delete('/students/:id', Delete_Student)
+
+  // Users >>
+  app.get('/users', Get_Users)
+  app.post('/users', Add_Users)
+  app.put('/users/:id', update_Users)
+  app.delete('/users/:id', Delete_Users)
+
+  // User login 
+  app.post('/users/login', User_login)
   // middleware
   function middleware (req, res, next) {
     const auth = req.query.auth
@@ -44,6 +67,10 @@ let tasks = [
   // Server Listen Start
 
   app.listen(port, ()=> console.log(chalk.white.bgGreen('Server Start')))
+  DBConnection()
+  
+  
+
 
   // Get Request Call
 

@@ -1,5 +1,6 @@
-import mongoose, { Mongoose } from "mongoose";
-import { Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
+
+
 const Studentschema = new Schema(
     {
         Name: mongoose.Schema.Types.String,
@@ -7,6 +8,7 @@ const Studentschema = new Schema(
         Course: mongoose.Schema.Types.String
     }
 )
-export default model = mongoose.model('Students', Schema)
+const studentmodel = mongoose.model('Students', Studentschema)
+export default studentmodel 
 
 
