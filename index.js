@@ -1,5 +1,6 @@
 import chalk from "chalk";
 import express, { json } from "express";
+import cors from 'cors' 
 import DBConnection from './DB/DBconnect.js'
 import 'dotenv/config'
 import model from "./DB/Model.js";
@@ -28,6 +29,7 @@ let tasks = [
   ];
   // body parser 
   app.use(express.json())
+  app.use(cors())
 
   // DB Connected 
   // console.log(process.env.DB_USER);

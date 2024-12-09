@@ -6,6 +6,6 @@ export async function Update_Student (req, res) {
     const studentsarr = await studentmodel.findByIdAndUpdate(id, updateddata)
     studentsarr.save()
     console.log('Students find from mongodb >>', studentsarr);
-    res.send({status: 200, Student: studentsarr, message: "Student Updated Successfully"})
+    res.json({status: 200, Student: studentsarr, message: "Student Updated Successfully"})
     
 }

@@ -6,9 +6,9 @@ export async function User_login (req, res) {
     console.log(user);
     
     if (user) {
-        res.send({status: 200, message: 'user login'})
+        res.json({status: 200, message: 'user login'})
     }
     else {
-        res.send({status: 500, message: 'Invalid Email or password'})
+        res.json({status: 500, message: 'Invalid Email or password'})
     }
 }
